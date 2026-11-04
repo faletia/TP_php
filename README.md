@@ -112,7 +112,7 @@ DELETE http://127.0.0.1:8000/movies/4
 
 **Attention :** remplacer `4` par l'identifiant réel du film à modifier ou supprimer. Vérifier son existence avant d'envoyer la requête.
 
-## 6. Pagination
+## 7. Pagination
 
 La pagination est intégrée à la route GET /movies.
 
@@ -140,7 +140,44 @@ items : films présents sur la page demandée.
 
 La pagination a été testée avec deux films et une limite d'un film par page.
 
+## 8. Filtres
 
-## 7. Conclusion
+La liste des films peut être filtrée grâce à des paramètres de requête.
+
+### Filtre par titre
+
+Le paramètre title permet de rechercher un texte présent dans le titre d'un film.
+
+La recherche n'est pas sensible à la casse : les majuscules et les minuscules sont traitées de la même manière.
+
+Exemple :
+
+-GET /movies?title=my
+
+### Filtre par année
+
+Le paramètre year permet de rechercher les films correspondant à une année précise.
+
+Exemple :
+
+-GET /movies?year=2026
+
+### Combinaison des filtres
+
+Les deux filtres peuvent être utilisés simultanément :
+
+-GET /movies?title=my&year=2026
+
+## 9. Combinaison des filtres et de la pagination
+
+Les filtres peuvent également être utilisés avec les paramètres de pagination.
+
+Exemples :
+
+-GET /movies?page=2&limit=1
+-GET /movies?title=o&page=2&limit=1
+
+
+## 10. Conclusion
 
 Le projet permet actuellement de créer, consulter, modifier et supprimer des films à travers une API Symfony. Les quatre opérations du CRUD ont été testées avec le fichier `movies.http`.composer install
