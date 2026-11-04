@@ -1,0 +1,67 @@
+POST http://127.0.0.1:8000/movies?message=coucou
+Content-Type: application/json
+
+{
+    "message": "coucou"
+}
+
+###
+
+POST http://127.0.0.1:8000/test
+Content-Type: application/json
+{
+    "message": "coucou"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/movies
+Content-Type: application/json
+
+{
+    "title": "Inception",
+    "description": "A thief who steals corporate secrets through dream-sharing technology.",
+    "year": 2010
+}
+
+###
+
+POST http://127.0.0.1:8000/movies
+Content-Type: application/json
+
+{
+    "title": "Interstellar",
+    "description": "A team travels through a wormhole in space.",
+    "year": 2014
+}
+
+###
+
+###
+
+POST http://127.0.0.1:8000/movies
+Content-Type: application/json
+
+{
+    "title": "The Matrix",
+    "description": "A computer hacker discovers the truth about reality.",
+    "year": 1999
+}
+
+PUT http://127.0.0.1:8000/movies/4
+Content-Type: application/json
+
+{
+    "title": "Inception - Updated",
+    "description": "Updated description.",
+    "year": 2011
+}
+
+
+###
+###
+
+GET http://127.0.0.1:8000/movies
+
+DELETE http://127.0.0.1:8000/movies/3
