@@ -65,3 +65,39 @@ Content-Type: application/json
 GET http://127.0.0.1:8000/movies
 
 DELETE http://127.0.0.1:8000/movies/3
+
+
+###
+
+GET http://127.0.0.1:8000/movies
+
+
+###
+
+GET http://127.0.0.1:8000/movies?page=1&limit=1
+
+###
+
+GET http://127.0.0.1:8000/movies?page=2&limit=1
+
+###
+
+GET http://127.0.0.1:8000/movies?title=my
+
+###
+
+GET http://127.0.0.1:8000/movies?year=
+
+
+###
+
+GET http://127.0.0.1:8000/movies?title=my&year=2026
+
+
+
+GET http://127.0.0.1:8000/movies?page=2&limit=1
+
+
+###
+
+GET http://127.0.0.1:8000/movies?title=o&page=2&limit=1

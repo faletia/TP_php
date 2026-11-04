@@ -11,17 +11,38 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Movie;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Model\PaginationDTO;
+use App\Model\Paginator;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 
 final class MoviesController extends AbstractController
 {
 #[Route('/movies', name: 'app_movies', methods: ['GET'])]
-public function index(MovieRepository $movieRepository): JsonResponse
-{
-    $movies = $movieRepository->findAll();
+public function index(
+    MovieRepository $movieRepository,
+    #[MapQueryString] PaginationDTO $paginationDTO
+): JsonResponse {
+    $query = $movieRepository->createQueryBuilder('m');
 
-    return $this->json($movies, Response::HTTP_OK, [], ['groups' => ['movie:read']]);
+    if ($paginationDTO->title !== null) {
+    $query->andWhere('LOWER(m.title) LIKE LOWER(:title)')
+        ->setParameter('title', '%' . $paginationDTO->title . '%');
 }
 
+    if ($paginationDTO->year !== null) {
+        $query->andWhere('m.year = :year')
+            ->setParameter('year', $paginationDTO->year);
+}
+
+    $paginator = (new Paginator())->paginate($query, $paginationDTO);
+
+    return $this->json(
+        $paginator,
+        Response::HTTP_OK,
+        [],
+        ['groups' => ['paginate', 'movie:read']]
+    );
+}
 #[Route('/movies', name: 'app_movies_create', methods: ['POST'])]
 public function create(
     EntityManagerInterface $entityManager,
