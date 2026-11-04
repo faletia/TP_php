@@ -112,6 +112,35 @@ DELETE http://127.0.0.1:8000/movies/4
 
 **Attention :** remplacer `4` par l'identifiant réel du film à modifier ou supprimer. Vérifier son existence avant d'envoyer la requête.
 
+## 6. Pagination
+
+La pagination est intégrée à la route GET /movies.
+
+Elle utilise deux paramètres :
+
+page : numéro de la page demandée.
+
+limit : nombre de films affichés par page.
+
+Exemples de requêtes :
+
+- GET /movies
+
+- GET /movies?page=1&limit=1
+
+- GET /movies?page=2&limit=1
+
+La réponse contient trois informations :
+
+total : nombre d'éléments renvoyés par le paginator.
+
+lastPage : nombre total de pages.
+
+items : films présents sur la page demandée.
+
+La pagination a été testée avec deux films et une limite d'un film par page.
+
+
 ## 7. Conclusion
 
 Le projet permet actuellement de créer, consulter, modifier et supprimer des films à travers une API Symfony. Les quatre opérations du CRUD ont été testées avec le fichier `movies.http`.composer install
